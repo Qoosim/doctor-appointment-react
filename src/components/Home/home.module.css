@@ -70,6 +70,16 @@
   outline: 2px solid #ca9100;
 }
 
+.loginBtn:hover {
+  background: transparent;
+  outline: 2px solid #ca9100;
+}
+
+.signupBtn:hover {
+  background: #ca9100;
+  outline: 1px solid #fff;
+}
+
 @media (max-width: 768px) {
   .btnContainer {
     display: flex;
