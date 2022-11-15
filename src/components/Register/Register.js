@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import styles from './register.module.css';
 
 const Register = () => {
@@ -51,78 +52,93 @@ const Register = () => {
   }
 
   return (
-    <>
-      <div className={styles.heading}>
-        <h3>Sign Up</h3>
-        <hr />
+    <section className={styles.signupSection}>
+      <div className={styles.sectionContainer}>
+        <div className={styles.heading}>
+          <h1>Sign Up</h1>
+          <hr className={styles.line} />
+        </div>
+        <div>
+          {
+            Object.keys(errors).length === 0 && isSubmit ? (
+              <p>Account created successfully</p>
+            ) : (
+              <p>{errors.message}</p>
+            )
+          }
+        </div>
+        <div className={styles.formContainer}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <input
+                type="text" 
+                id="name" 
+                ref={nameRef}
+                className={styles.inputField}
+                required
+              />
+              <label htmlFor="name" className={styles.inputLabel}>Full Name</label>
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type="email"
+                id="email"
+                ref={emailRef}
+                className={styles.inputField}
+                required
+              />
+              <label htmlFor="email" className={styles.inputLabel}>Email</label>
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type={showPassword ? 'text' : 'password'} 
+                id="password"
+                ref={passwordRef}
+                className={styles.inputField}
+                required
+              />
+              <label htmlFor="password" className={styles.inputLabel}>Password</label>
+              <button
+                type="button"
+                className={styles.eyeBtn}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                { showPassword ? <FaEye className={styles.eyeIcon} /> : <FaEyeSlash className={styles.eyeIcon} /> }
+              </button>
+            </div>
+            <div className={styles.formGroup}>
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="passwordConfirm"
+                ref={passwordConfirmRef}
+                className={styles.inputField}
+                required
+              />
+              <label htmlFor="passwordConfirm" className={styles.inputLabel}>Password Confirmation</label>
+              <button
+                type="button"
+                className={styles.eyeBtn}
+                onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
+              >
+                { showPasswordConfirm ? <FaEye className={styles.eyeIcon} /> : <FaEyeSlash className={styles.eyeIcon} />}
+              </button>
+            </div>
+            <div className={styles.submitBtn}>
+              <button type="submit">Submit</button>
+            </div>
+            <div className={styles.linkToLogin}>
+              <p>
+                Already have an account?
+                <Link to="/" className={styles.link}>
+                  {' '}
+                  Login
+                </Link>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
-      <p>
-        {
-          Object.keys(errors).length === 0 && isSubmit ? (
-            <div>Account created successfully</div>
-          ) : (
-            <div>{errors.message}</div>
-          )
-        }
-      </p>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label htmlFor="name">Full Name</label>
-          <input
-            type="text" 
-            id="name" 
-            ref={nameRef}
-            className={styles.inputField}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            ref={emailRef}
-            className={styles.inputField}
-            required
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            type={showPassword ? 'text' : 'password'} 
-            id="password"
-            ref={passwordRef}
-            className={styles.inputField}
-            required
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            { showPassword ? <FaEye /> : <FaEyeSlash /> }
-          </button>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password Confirmation</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            ref={passwordConfirmRef}
-            className={styles.inputField}
-            required
-          />
-          <button
-            type="button"
-            onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-          >
-            { showPasswordConfirm ? <FaEye /> : <FaEyeSlash /> }
-          </button>
-        </div>
-        <div className={styles.submitBtn}>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
-    </>
+    </section>
   )
 }
 

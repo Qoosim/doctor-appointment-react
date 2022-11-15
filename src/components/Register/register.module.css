@@ -1,0 +1,153 @@
+.signupSection {
+  background-image: linear-gradient(to right, #99e428de, #a7f334a2), url('../../assets/images/background.jpg');
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sectionContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto;
+  text-align: center;
+  border-radius: 10px;
+  padding: 40px 40px 40px;
+  background: #fff;
+  width: 30%;
+  box-shadow:
+    rgba(255, 255, 255, 0.1) 0 1px 1px 0 inset,
+    rgba(50, 50, 93, 0.25) 0 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0 30px 60px -30px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  color: #0ea5e9;
+  margin-bottom: 1rem;
+}
+
+.line {
+  width: 50%;
+  height: 2px;
+  background: #0ea5e9;
+  margin-top: 0.5rem;
+}
+
+.formContainer {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form .formGroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #44522e;
+  position: relative;
+}
+
+.form input {
+  background: #fff;
+  color: rgb(116, 114, 114);
+  border: none;
+  outline: none;
+  line-height: 0;
+  padding: 7px;
+}
+
+.form input:focus,
+.form input:valid {
+  background: #fff;
+  line-height: 0;
+  padding: 7px;
+  border: none;
+  outline: none;
+}
+
+.form .eyeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #0ea5e9;
+  border: none;
+  background: transparent;
+  font-size: 1rem;
+}
+
+.formGroup .inputLabel {
+  font-size: 1.2rem;
+  color: #0ea5e9;
+  position: absolute;
+  top: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.inputField:focus + .inputLabel,
+.inputField:valid + .inputLabel {
+  transform: translateY(-25px);
+}
+
+.submitBtn button {
+  background: #feb500;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 15px 40px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  width: 100%;
+}
+
+.submitBtn button a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.submitBtn button:hover {
+  background: #ca9100;
+}
+
+.linkToLogin {
+  font-family: 'Raleway', sans-serif;
+  font-style: italic;
+  font-size: 1rem;
+  word-spacing: 3px;
+  letter-spacing: 2px;
+}
+
+.link {
+  color: #0ea5e9;
+  text-decoration: none;
+}
+
+@media (max-width: 854px) {
+  .sectionContainer {
+    width: 60%;
+  }
+}
+
+@media (max-width: 563px) {
+  .sectionContainer {
+    width: 80%;
+  }
+}
+
+@media (max-width: 422px) {
+  .sectionContainer {
+    width: 90%;
+  }
+}
