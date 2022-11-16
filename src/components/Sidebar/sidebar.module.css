@@ -1,0 +1,11 @@
+.sidebarContainer {
+  border: 2px solid red;
+  width: 200px;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.sidebarLogo {
+  width: 100px;
+  height: 80px;
+}

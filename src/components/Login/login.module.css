@@ -1,4 +1,4 @@
-.signupSection {
+.loginSection {
   background-image: linear-gradient(to right, #99e428de, #a7f334a2), url('../../assets/images/background.jpg');
   background-size: cover;
   width: 100%;
@@ -99,7 +99,7 @@
   transform: translateY(-25px);
 }
 
-.submitBtn button {
+.loginBtn button {
   background: #feb500;
   color: #fff;
   font-size: 1.3rem;
@@ -112,16 +112,16 @@
   width: 100%;
 }
 
-.submitBtn button a {
+.loginBtn button a {
   text-decoration: none;
   color: #fff;
 }
 
-.submitBtn button:hover {
+.loginBtn button:hover {
   background: #ca9100;
 }
 
-.linkToLogin {
+.linkToRegister {
   font-family: 'Raleway', sans-serif;
   font-style: italic;
   font-size: 1rem;

@@ -10,11 +10,19 @@ const Home = () => {
         <p className={styles.motto}>See your doctor today....</p>
       </div>
       <div className={styles.btnContainer}>
-        <Link to="">
-          <button className={styles.loginBtn}>Login</button>
+        <Link to="/login">
+          <button
+            className={styles.loginBtn}
+          >
+            Login
+          </button>
         </Link>
         <Link to="/register">
-          <button className={styles.signupBtn}>Register</button>
+          <button
+            className={styles.signupBtn}
+          >
+            Register
+          </button>
         </Link>
       </div>
     </div>

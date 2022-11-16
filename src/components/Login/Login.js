@@ -1,33 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import styles from "./register.module.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import styles from "./login.module.css";
 
-const Register = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
+const Login = () => {
   const [errors, setErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const passwordConfirmRef = useRef();
-
-  useEffect(() => {
-    if (Object.keys(errors).length === 0 && isSubmit) {
-      console.log("Operation successfulA");
-    }
-  }, [errors, isSubmit]);
 
   const validate = () => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-    if (nameRef.current.value === "") {
-      errors.message = "Please, enter your name!";
-      nameRef.current.focus();
-    }
 
     if (!regex.test(emailRef.current.value)) {
       errors.message = "This is not a valid email format";
@@ -37,11 +23,6 @@ const Register = () => {
     if (passwordRef.current.value < 6 || passwordRef.current.value > 40) {
       errors.message = "Password must be between 6 and 40 characters";
       passwordRef.current.focus();
-    }
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      errors.message = "Passwords do not match";
-      passwordConfirmRef.current.focus();
     }
     return errors;
   };
@@ -53,33 +34,21 @@ const Register = () => {
   };
 
   return (
-    <section className={styles.signupSection}>
+    <section className={styles.loginSection}>
       <div className={styles.sectionContainer}>
         <div className={styles.heading}>
-          <h1>Sign Up</h1>
+          <h1>Login</h1>
           <hr className={styles.line} />
         </div>
         <div>
           {Object.keys(errors).length === 0 && isSubmit ? (
-            <p>Account created successfully</p>
+            <p>Login successfully</p>
           ) : (
             <p>{errors.message}</p>
           )}
         </div>
         <div className={styles.formContainer}>
           <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.formGroup}>
-              <input
-                type="text"
-                id="name"
-                ref={nameRef}
-                className={styles.inputField}
-                required
-              />
-              <label htmlFor="name" className={styles.inputLabel}>
-                Full Name
-              </label>
-            </div>
             <div className={styles.formGroup}>
               <input
                 type="email"
@@ -115,38 +84,15 @@ const Register = () => {
                 )}
               </button>
             </div>
-            <div className={styles.formGroup}>
-              <input
-                type={showPasswordConfirm ? "text" : "password"}
-                id="passwordConfirm"
-                ref={passwordConfirmRef}
-                className={styles.inputField}
-                required
-              />
-              <label htmlFor="passwordConfirm" className={styles.inputLabel}>
-                Password Confirmation
-              </label>
-              <button
-                type="button"
-                className={styles.eyeBtn}
-                onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-              >
-                {showPasswordConfirm ? (
-                  <FaEye className={styles.eyeIcon} />
-                ) : (
-                  <FaEyeSlash className={styles.eyeIcon} />
-                )}
-              </button>
+            <div className={styles.loginBtn}>
+              <button type="submit">Login</button>
             </div>
-            <div className={styles.submitBtn}>
-              <button type="submit">Submit</button>
-            </div>
-            <div className={styles.linkToLogin}>
+            <div className={styles.linkToRegister}>
               <p>
-                Already have an account?
-                <Link to="/login" className={styles.link}>
+                Have no account yet?
+                <Link to="/register" className={styles.link}>
                   {" "}
-                  Login
+                  Register
                 </Link>
               </p>
             </div>
@@ -157,4 +103,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
