@@ -12,14 +12,14 @@ const Home = () => {
       <div className={styles.btnContainer}>
         <Link to="/login">
           <button
-            className={styles.loginBtn}
+            className={`${styles.loginBtn} ${styles.btn}`}
           >
             Login
           </button>
         </Link>
         <Link to="/register">
           <button
-            className={styles.signupBtn}
+            className={`${styles.signupBtn} ${styles.btn}`}
           >
             Register
           </button>

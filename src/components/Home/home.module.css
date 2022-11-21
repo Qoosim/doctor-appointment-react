@@ -38,18 +38,12 @@
 @keyframes title {
   0% {
     opacity: 0;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-
-  75% {
-    opacity: 0.7;
+    transform: translateX(-100px);
   }
 
   100% {
     opacity: 1;
+    transform: translate(0);
   }
 }
 
@@ -62,12 +56,48 @@
 }
 
 @keyframes motto {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes btnMoveUp {
   from {
-    transform: translateY(20px);
+    transform: translateY(-10px);
   }
 
   to {
-    transform: translateY(0);
+    transform: translate(0);
+  }
+}
+
+@keyframes loginMoveDown {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes signupMoveUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
   }
 }
 
@@ -77,8 +107,7 @@
   margin-top: 5rem;
 }
 
-.loginBtn,
-.signupBtn {
+.btn {
   padding: 0.5rem 3.5rem;
   border: none;
   border-radius: 3rem;
@@ -88,29 +117,38 @@
   letter-spacing: 3px;
   cursor: pointer;
   color: #fff;
-  transition: all 0.5s ease-in-out;
+  transition: all .4s;
+  position: relative;
 }
 
 .loginBtn {
+  animation: loginMoveDown 2s ease-in-out .75s;
+  animation-fill-mode: backwards;
   margin-right: 1rem;
   background: #ca9100;
   outline: 1px solid #fff;
 }
 
 .signupBtn {
+  animation: signupMoveUp 2s ease-in-out .75s;
+  animation-fill-mode: backwards;
   margin-left: 1rem;
   background: transparent;
   outline: 2px solid #ca9100;
 }
 
 .loginBtn:hover {
+  transform: translateY(-3px);
   background: transparent;
   outline: 2px solid #ca9100;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .signupBtn:hover {
+  transform: translateY(-3px);
   background: #ca9100;
   outline: 1px solid #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 768px) {
