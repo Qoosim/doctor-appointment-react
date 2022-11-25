@@ -46,14 +46,20 @@ const Sidebar = () => {
               Logout
             </button>
           </div>
-          <ul>
+          <ul className={styles.socialLinksDiv}>
             {socialLinks.map((link) => {
               const { id, url, icon } = link;
               return (
                 <li key={id}>
-                  <Link to={url} className={styles.socialLink} target="_blank">
+                  {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                  <a
+                    href={url}
+                    className={styles.socialLink}
+                    target="_blank"
+                    rel="noopener"
+                  >
                     {icon}
-                  </Link>
+                  </a>
                 </li>
               );
             })}
