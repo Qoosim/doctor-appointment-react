@@ -26,8 +26,36 @@
 }
 
 .listItem {
+  width: 100%;
   font-size: 1.3rem;
-  border: 1px solid blue;
-  padding: 5px 15px;
   cursor: pointer;
+}
+
+.active {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: #84cc1f;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+}
+
+.active:hover {
+  color: #000;
+}
+
+.nonActive {
+  width: 100%;
+  display: block;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.8rem 1rem;
+}
+
+.nonActive:hover {
+  background: #caf291;
+  color: #000;
 }
