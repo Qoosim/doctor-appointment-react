@@ -1,119 +1,87 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import Carousel from 'react-multi-carousel';
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Sidebar from '../Sidebar/Sidebar';
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './doctorsList.module.css';
 import { socialLinks } from './socialLinks';
 import { doctors } from './doctors';
 
-const DoctorsList = () => {
+const DoctorsList = ({ slides }) => {
+  const [current, setCurrent] = useState(0);
+      
+  const length = slides.length;
 
-{/*
-  const doctorsList = doctors.map((doctor) => (
-    <div key={doctor.id}>
-      <Link
-        to={`/doctors/${doctor.id}`}
-        className={styles.doctorSingle}
-        state={doctor}
-      >
-        <div className="d-flex flex-column align-items-center mb-5">
-          <img
-            src={doctor.photo}
-            alt={doctor.name} 
-            className={styles.img}
-          />
-          <h5
-            className={`text-dark p-4 ${styles.border}`}
-          >
-            {doctor.name}
-          </h5>
-          <p className="text-secondary">{doctor.desc}</p>
-          <ul className="d-flex">
-            {socialLinks.map((link) => {
-              const { id, url, icon } = link;
-              return (
-                <li key={id}>
-                  eslint-disable-next-line react/jsx-no-target-blank
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener"
-                    className="m-1 text-secondary"
-                  >
-                    {icon}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </Link>
-    </div>
-  ));
-*/}
-    
+  const nextSlide = () => {
+    setCurrent(current === length - 1 ? 0 : current + 1);
+  }
+
+  const prevSlide = () => {
+    setCurrent(current === 0 ? length - 1 : current - 1);
+  }
+
+  if(!Array.isArray(slides) || slides.length <= 0) {
+    return null;
+  }
+
   return (
-    <>
-      <Sidebar />
+    <section className={styles.mainWrapper}>
+      <Sidebar className={styles.sidebar} />
       <div className={styles.doctorsContainer}>
         <div className={styles.header}>
           <h3>LIST OF DOCTORS</h3>
-          <p className="text-secondary">Please select a doctor</p>
+          <p>Please select a doctor</p>
         </div>
-        <Carousel slide={false}>
-          { doctors.map((doctor) => {
-            console.log(doctor)
-            return (
-              <div key={doctor.id}>
-                <Link
-                  to={`/doctors/${doctor.id}`}
-                  className={styles.doctorSingle}
-                  state={doctor}
-                >
-                  <Carousel.Item>
-                    <div className="d-flex flex-column align-items-center mb-5">
-                      <img
-                        src={doctor.photo}
-                        alt={doctor.name} 
-                        className={styles.img}
-                      />
-                      <Carousel.Caption>
-                        <h5
-                          className={`text-dark p-4 ${styles.border}`}
-                        >
-                          {doctor.name}
-                        </h5>
-                        <p className="text-secondary">{doctor.desc}</p>
-                        <ul className="d-flex">
-                          {socialLinks.map((link) => {
-                            const { id, url, icon } = link;
-                            return (
-                              <li key={id}>
-                                {/*eslint-disable-next-line react/jsx-no-target-blank*/}
-                                <a
-                                  href={url}
-                                  target="_blank"
-                                  rel="noopener"
-                                  className="m-1 text-secondary"
-                                >
-                                  {icon}
-                                </a>
-                              </li>
-                            );
-                          })}
-                        </ul>
-                      </Carousel.Caption>
-                    </div>
-                  </Carousel.Item>
-                </Link>
-              </div> 
-            )
-          })}
-        </Carousel>
+        <div className={styles.docInfoContainer}>
+          <FaArrowAltCircleLeft className={styles.leftArrow} onClick={prevSlide} />
+          <FaArrowAltCircleRight className={styles.rightArrow} onClick={nextSlide} />
+          { doctors.map((doctor, index) => (
+            <div
+              className={index === current ? `${styles.slide} ${styles.active}` : `${styles.slide}`}
+              key={index}
+            >
+              { index === current && (
+                <div className={styles.docSlideContainer}>
+                  <Link
+                    to={`/doctors/${doctor.id}`}
+                    className={styles.doctorSingle}
+                    state={doctor}
+                  >
+                    <img
+                      src={doctor.photo}
+                      alt={doctor.name} 
+                      className={styles.image}
+                    />
+                  </Link>
+                  <h5 className={styles.docName}>{doctor.name}</h5>
+                  <p className={styles.description}>{doctor.desc}</p>
+                  <ul className={styles.ulList}>
+                    {socialLinks.map((link) => {
+                      const { id, url, icon } = link;
+                      return (
+                        <li key={id}>
+                          {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                          <a
+                            href={url}
+                            target="_blank"
+                            rel="noopener"
+                            className={styles.icons}
+                          >
+                            {icon}
+                          </a>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
-    </>
+    </section>
   );
 };
 
@@ -147,32 +115,29 @@ const responsive = {
     },
   }
 
-*/}
+<Carousel
+          additionalTransfrom={0}
+          arrows
+          autoPlaySpeed={3000}
+          centerMode={false}
+          className=""
+          containerClass="container"
+          dotListClass=""
+          draggable
+          focusOnSelect={false}
+          infinite={false}
+          itemClass=""
+          keyBoardControl
+          minimumTouchDrag={80}
+          renderButtonGroupOutside={false}
+          renderDotsOutside={false}
+          responsive={responsive}
+          showDots={false}
+          sliderClass=""
+          slidesToSlide={1}
+          swipeable
+        >
+          {doctorsList}
+        </Carousel>
 
-{/*
-  <Carousel
-    additionalTransfrom={0}
-    arrows
-    autoPlaySpeed={3000}
-    centerMode={false}
-    className=""
-    containerClass="container"
-    dotListClass=""
-    draggable
-    focusOnSelect={false}
-    infinite={false}
-    itemClass=""
-    keyBoardControl
-    minimumTouchDrag={80}
-    renderButtonGroupOutside={false}
-    renderDotsOutside={false}
-    responsive={responsive}
-    showDots={false}
-    sliderClass=""
-    slidesToSlide={1}
-    swipeable
-  >
-    {doctorsList}
-  </Carousel>
 */}
-
