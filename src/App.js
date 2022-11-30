@@ -6,6 +6,8 @@ import Login from './components/Login/Login';
 import DoctorsList from './components/DoctorsList/DoctorsList';
 import Reserve from './components/Reserve/Reserve';
 import MyReservation from './components/MyReservation/MyReservation';
+import CarouselDisplay from './components/Carousel/Carousel';
+import { data } from './components/Carousel/data';
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/doctors" element={ <DoctorsList /> } />
         <Route path="/reserve" element={ <Reserve /> } />
         <Route path="/reservations" element={ <MyReservation /> } />
+        <Route path="/display" element={ <CarouselDisplay slides={data} /> } />
       </Routes>
     </Router>
   );

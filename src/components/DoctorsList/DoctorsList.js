@@ -1,6 +1,6 @@
 import React from 'react';
 // import Carousel from 'react-multi-carousel';
-import { Carousel } from 'react-bootstrap';
+import Carousel from 'react-bootstrap/Carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Sidebar from '../Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
@@ -91,7 +91,7 @@ const DoctorsList = () => {
                             const { id, url, icon } = link;
                             return (
                               <li key={id}>
-                                {/* eslint-disable-next-line react/jsx-no-target-blank */}
+                                {/*eslint-disable-next-line react/jsx-no-target-blank*/}
                                 <a
                                   href={url}
                                   target="_blank"
